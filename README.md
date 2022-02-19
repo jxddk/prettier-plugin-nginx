@@ -14,7 +14,7 @@ on Prettier.
 ## Getting Started
 
 [Install Prettier](https://prettier.io/docs/en/install.html), and then install
-this plugin from [npm](https://www.npmjs.com/):
+this plugin from [npm](https://www.npmjs.com/package/prettier-plugin-nginx):
 
 ```shell
 npm install -g prettier-plugin-nginx
