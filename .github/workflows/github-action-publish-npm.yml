@@ -4,7 +4,7 @@ on:
     branches:
       - master
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -13,7 +13,7 @@ jobs:
           node-version: "16.x"
           registry-url: "https://registry.npmjs.org"
       - run: npm install
-      - run: npm run build-test
+      - run: npm run test
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
