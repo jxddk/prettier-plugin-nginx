@@ -1,4 +1,6 @@
 package-lock.json
 node_modules
+test
+dist-test
 *.tsbuildinfo
 .git
