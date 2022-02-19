@@ -1,6 +1,6 @@
 [
   {
-    "filename": "output_a.nginxconf",
+    "filename": "output_a.example",
     "options": {
       "alignDirectives": true,
       "alignUniversally": false,
@@ -9,7 +9,7 @@
     }
   },
   {
-    "filename": "output_b.nginxconf",
+    "filename": "output_b.example",
     "options": {
       "alignDirectives": true,
       "alignUniversally": true,
@@ -18,7 +18,7 @@
     }
   },
   {
-    "filename": "output_c.nginxconf",
+    "filename": "output_c.example",
     "options": {
       "alignDirectives": false,
       "alignUniversally": true,
