@@ -18,9 +18,9 @@ http {
   # end server definition
 
     server { # simple load balancing
-    listen          80;
-    server_name     big.server.com;
-    access_log      logs/big.server.access.log main;
+    listen 80;
+    server_name    big.server.com;
+    access_log  logs/big.server.access.log main;
 
     location / {
       proxy_pass      http://big_server_com;

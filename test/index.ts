@@ -14,7 +14,7 @@ let testDirectories: string[] = [];
 fs.readdirSync(path.join(testRoot, "files")).forEach((i) => {
   const directoryName = path.join(testRoot, "files", i);
   if (fs.lstatSync(directoryName).isDirectory()) {
-    if (!fs.existsSync(path.join(directoryName, "input.nginxconf"))) {
+    if (!fs.existsSync(path.join(directoryName, "input.example"))) {
       return;
     }
     if (!fs.existsSync(path.join(directoryName, "options.json"))) {
@@ -25,7 +25,7 @@ fs.readdirSync(path.join(testRoot, "files")).forEach((i) => {
 });
 
 testDirectories.forEach((testDir) => {
-  const input = fs.readFileSync(path.join(testDir, "input.nginxconf"), {
+  const input = fs.readFileSync(path.join(testDir, "input.example"), {
     encoding: "utf-8",
   });
   const options = JSON.parse(
