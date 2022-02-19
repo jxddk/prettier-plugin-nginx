@@ -24,6 +24,48 @@ This plugin is configured to run on files with the extension `.nginx` or
 `.nginxconfig`. For plugin-level configuration, see
 [Configuration](#configuration).
 
+Modules that extend NGINX to include other languages within configuration files,
+such as [lua-nginx-module](https://github.com/openresty/lua-nginx-module), will
+not work with this formatter.
+
+## Example
+
+A messy file like this...
+
+```
+server {
+# server definition
+listen 443 ssl; listen [::]:443 ssl;
+server_name example.com;
+location / { proxy_pass http://semaphore; proxy_set_header Host $http_host;
+proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_read_timeout 1000; }
+# end server definition
+}
+```
+
+...is transformed to this:
+
+```nginx
+server {
+  # server definition
+  listen      443 ssl;
+  listen      [::]:443 ssl;
+  server_name example.com;
+
+  location / {
+    proxy_pass         http://semaphore;
+    proxy_set_header   Host $http_host;
+    proxy_set_header   X-Real-IP $remote_addr;
+    proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header   X-Forwarded-Proto $scheme;
+    proxy_read_timeout 1000;
+  }
+  # end server definition
+}
+```
+
 ## Configuration
 
 This plugin, like Prettier, is
