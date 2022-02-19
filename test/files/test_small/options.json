@@ -1,0 +1,29 @@
+[
+  {
+    "filename": "output_a.nginxconf",
+    "options": {
+      "alignDirectives": true,
+      "alignUniversally": false,
+      "wrapParameters": true,
+      "continuationIndent": 2
+    }
+  },
+  {
+    "filename": "output_b.nginxconf",
+    "options": {
+      "alignDirectives": true,
+      "alignUniversally": true,
+      "wrapParameters": true,
+      "continuationIndent": 2
+    }
+  },
+  {
+    "filename": "output_c.nginxconf",
+    "options": {
+      "alignDirectives": false,
+      "alignUniversally": true,
+      "wrapParameters": false,
+      "continuationIndent": 12
+    }
+  }
+]

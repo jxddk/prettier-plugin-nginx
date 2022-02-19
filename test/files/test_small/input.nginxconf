@@ -1,0 +1,30 @@
+user       www www;  ## Default: nobody
+
+# some events
+events {
+  worker_connections  4096;  ## Default: 1024
+} # end events
+# http stuff
+http {
+  include    conf/mime.types;
+  sendfile     on;
+  tcp_nopush   on;
+  # server definition
+  server { # php/fastcgi
+    location ~ \.php$ {
+      fastcgi_pass   127.0.0.1:1025;
+    }
+  }
+  # end server definition
+
+    server { # simple load balancing
+    listen          80;
+    server_name     big.server.com;
+    access_log      logs/big.server.access.log main;
+
+    location / {
+      proxy_pass      http://big_server_com;
+    } # end big server block
+    # end block
+  }
+}

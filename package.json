@@ -1,0 +1,37 @@
+{
+  "name": "prettier-plugin-nginx",
+  "version": "1.0.0",
+  "description": "NGINX configuration plugin for Prettier",
+  "author": "Joe Dean <joe@joedean.dev>",
+  "license": "MIT",
+  "main": "dist/index",
+  "types": "dist/index",
+  "homepage": "https://github.com/joedeandev/prettier-plugin-nginx",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joedeandev/prettier-plugin-nginx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joedeandev/prettier-plugin-nginx/issues"
+  },
+  "keywords": [
+    "nginx",
+    "prettier",
+    "prettier-plugin",
+    "configuration",
+    "format",
+    "autoformat",
+    "autoformatter"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build-test": "npm run build && tsc -p tsconfig.tests.json && cp -r ./test/files/. ./dist-test/files",
+    "test": "npm run build-test && cd dist-test && node index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.16",
+    "@types/prettier": "^2.4.3",
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.5"
+  }
+}
