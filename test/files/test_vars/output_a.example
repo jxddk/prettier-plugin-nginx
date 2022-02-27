@@ -1,0 +1,11 @@
+server {
+    listen      ${NGINX_PORT};
+    # more vars
+    server_name ${NGINX_HOST}.com;
+
+    location / {
+        proxy_pass         http://test;
+        proxy_set_header   Host $http_host;
+        proxy_read_timeout 1000;
+    }
+}

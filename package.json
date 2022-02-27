@@ -1,6 +1,6 @@
 {
   "name": "prettier-plugin-nginx",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "NGINX configuration plugin for Prettier",
   "author": "Joe Dean <joe@joedean.dev>",
   "license": "MIT",

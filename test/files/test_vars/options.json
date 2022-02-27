@@ -1,0 +1,11 @@
+[
+  {
+    "filename": "output_a.example",
+    "options": {
+      "alignDirectives": true,
+      "alignUniversally": false,
+      "wrapParameters": true,
+      "continuationIndent": 2
+    }
+  }
+]

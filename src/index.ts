@@ -194,6 +194,26 @@ export const parsers: { [name: string]: Parser } = {
           });
         };
 
+        const findParenEnd = (startIndex: number): number => {
+          let blockEnd = t.length;
+          let parenCount = 0;
+          for (let j = startIndex; j < t.length; j++) {
+            switch (t[j]) {
+              case "{":
+                parenCount += 1;
+                break;
+              case "}":
+                parenCount -= 1;
+                break;
+            }
+            if (parenCount === 0) {
+              blockEnd = j + 1;
+              break;
+            }
+          }
+          return blockEnd;
+        };
+
         for (let i = 0; i < t.length; i++) {
           if (skipTo && i < skipTo) {
             continue;
@@ -210,6 +230,14 @@ export const parsers: { [name: string]: Parser } = {
           }
           if (insideComment) {
             tokenBuffer.push([i, c]);
+            continue;
+          }
+          if (c === "$" && i + 1 < t.length && t[i + 1] === "{") {
+            let envVarEnd = findParenEnd(i + 1);
+            for (let q = i; q < envVarEnd; q++) {
+              tokenBuffer.push([q, t[q]]);
+            }
+            skipTo = envVarEnd;
             continue;
           }
           if (c === "#") {
@@ -244,22 +272,7 @@ export const parsers: { [name: string]: Parser } = {
           }
           if (c === "{") {
             breakToken();
-            let blockEnd = t.length;
-            let parenCount = 0;
-            for (let j = i; j < t.length; j++) {
-              switch (t[j]) {
-                case "{":
-                  parenCount += 1;
-                  break;
-                case "}":
-                  parenCount -= 1;
-                  break;
-              }
-              if (parenCount === 0) {
-                blockEnd = j + 1;
-                break;
-              }
-            }
+            let blockEnd = findParenEnd(i);
             nodes.push({
               type: "block",
               content: parseRecursive(
@@ -357,8 +370,7 @@ export const printers: { [name: string]: Printer } = {
         throw Error("Invalid root node");
       }
 
-      // pre-parse the AST to add linebreaks between blocks and directives,
-      // and alphabetize directives (if option is toggled)
+      // pre-parse the AST to add linebreaks between blocks and directives
       const preparseRecursive = (node: ASTNode) => {
         if (
           node.type != "main" &&
@@ -379,7 +391,7 @@ export const printers: { [name: string]: Printer } = {
           ) {
             preparseRecursive(subnode);
           }
-          if (subnode.type != "blockdirective") {
+          if (subnode.type !== "blockdirective") {
             continue;
           }
           // if there is a previous directive, insert a break
@@ -403,6 +415,7 @@ export const printers: { [name: string]: Printer } = {
                   end: pos,
                 },
               ]);
+              break;
             }
           }
           // if there is any following element, insert a break
@@ -410,8 +423,8 @@ export const printers: { [name: string]: Printer } = {
             let hasExtraElement = false;
             for (
               let j = i + 1;
-              j < node.content.length;
-              j++ && !hasExtraElement
+              j < node.content.length && !hasExtraElement;
+              j++
             ) {
               switch (node.content[j].type) {
                 case "comment":
@@ -434,6 +447,7 @@ export const printers: { [name: string]: Printer } = {
             }
           }
         }
+
         for (let i = 0; i < insertions.length; i++) {
           const [index, breakNode] = insertions[i];
           node.content.splice(i + index, 0, breakNode);
