@@ -37,7 +37,7 @@ server {
 # server definition
 listen 443 ssl; listen [::]:443 ssl;
 server_name example.com;
-location / { proxy_pass http://semaphore; proxy_set_header Host $http_host;
+location / { proxy_pass http://proxy; proxy_set_header Host $http_host;
 proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 proxy_set_header X-Forwarded-Proto $scheme;
 proxy_read_timeout 1000; }
@@ -55,7 +55,7 @@ server {
   server_name example.com;
 
   location / {
-    proxy_pass         http://semaphore;
+    proxy_pass         http://proxy;
     proxy_set_header   Host $http_host;
     proxy_set_header   X-Real-IP $remote_addr;
     proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;

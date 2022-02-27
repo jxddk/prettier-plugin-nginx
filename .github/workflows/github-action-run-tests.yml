@@ -1,4 +1,4 @@
-name: Publish to NPM
+name: Run tests
 on:
   push:
     branches:
