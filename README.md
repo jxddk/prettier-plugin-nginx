@@ -21,7 +21,7 @@ npm install -g prettier-plugin-nginx
 ```
 
 This plugin is configured to run on files with the extension `.nginx` or
-`.nginxconfig`. For plugin-level configuration, see
+`.nginxconf`. For plugin-level configuration, see
 [Configuration](#configuration).
 
 Modules that extend NGINX to include other languages within configuration files,
