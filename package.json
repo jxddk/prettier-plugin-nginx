@@ -1,6 +1,6 @@
 {
   "name": "prettier-plugin-nginx",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "NGINX configuration plugin for Prettier",
   "author": "Joe Dean <joe@joedean.dev>",
   "license": "MIT",
@@ -29,9 +29,9 @@
     "test": "npm run build-test && cd dist-test && node index.js"
   },
   "devDependencies": {
-    "@types/node": "^17.0.16",
-    "@types/prettier": "^2.4.3",
-    "prettier": "^2.5.1",
-    "typescript": "^4.5.5"
+    "@types/node": "^18.15.3",
+    "@types/prettier": "^2.7.2",
+    "prettier": "^2.8.4",
+    "typescript": "^5.0.0"
   }
 }
