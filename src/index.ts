@@ -91,8 +91,6 @@ export const parsers: { [name: string]: Parser } = {
     astFormat: "nginx",
     parse: (
       text: string,
-      parsers: { [parserName: string]: Parser },
-      options: NginxOptions
     ): ASTNode => {
       const parseRecursive = (t: string, rootIndex: number): ASTNode[] => {
         let nodes: ASTNode[] = [];
