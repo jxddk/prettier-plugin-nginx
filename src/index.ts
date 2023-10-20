@@ -5,6 +5,7 @@ import {
   ParserOptions,
   Printer,
   RequiredOptions,
+  SupportLanguage,
 } from "prettier";
 import { builders } from "prettier/doc";
 
@@ -82,9 +83,11 @@ export const languages = [
     name: "nginx",
     parsers: ["nginx"],
     extensions: [".nginx", ".nginxconf"],
+    filenames: ["nginx.conf"],
     linguistLanguageId: 248,
+    vscodeLanguageIds: ["nginx"],
   },
-];
+] satisfies SupportLanguage[];
 
 export const parsers: { [name: string]: Parser } = {
   nginx: {
