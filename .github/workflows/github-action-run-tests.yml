@@ -2,14 +2,19 @@ name: Run tests
 on:
   push:
     branches:
-      - "*"
+      - "**"
+  pull_request:
+permissions:
+  contents: read
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: "16.x"
+          node-version-file: ".node-version"
       - run: npm install
-      - run: npm run test
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run format:check
