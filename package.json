@@ -2,7 +2,7 @@
   "name": "prettier-plugin-nginx",
   "version": "2.0.0",
   "description": "NGINX configuration plugin for Prettier",
-  "author": "Joe Dean <joe@joedean.dev>",
+  "author": "Joe Dean <joe@jxd.dk> (https://jxd.dk)",
   "license": "MIT",
   "type": "module",
   "main": "./dist/cjs/index.js",
